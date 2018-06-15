@@ -9,6 +9,15 @@ export default class CookieControl {
       acceptValue: '1',
       revokeValue: '0',
       timeout: 200,
+      optionCookieHtml: cookie => `<li>
+          <input type="checkbox" class="ng-cc-optional-checkbox" id="ng-cc-${cookie.name}" data-name="${cookie.name}" ${cookie.accepted ? 'checked' : ''} />
+          <label for="ng-cc-${cookie.name}">
+            <i class="ng-cc-checkbox-icon">
+              <span></span>
+            </i>${cookie.label}
+          </label>
+          <p>${cookie.description}</p>
+        </li>`,
     }, config.options);
     this.opened = false;
     this.acceptedCookies = getCookie('ng-cc-accepted') === 'accepted';
@@ -84,16 +93,7 @@ export default class CookieControl {
     let optionalHtml = '';
     this.optionalCookiesByName.forEach((cookieName) => {
       const cookie = this.optionalCookies[cookieName];
-      optionalHtml += `<li>
-          <input type="checkbox" class="ng-cc-optional-checkbox" id="ng-cc-${cookie.name}" data-name="${cookie.name}" ${cookie.accepted ? 'checked' : ''} />
-          <label for="ng-cc-${cookie.name}">
-            <i class="ng-cc-checkbox-icon">
-              <span class="ng-cc-on">On</span>
-              <span class="ng-cc-off">Off</span>
-            </i>${cookie.label}
-          </label>
-          <p>${cookie.description}</p>
-        </li>`;
+      optionalHtml += this.options.optionCookieHtml(cookie);
     });
     this.el.querySelector('.ng-cc-optional-list').innerHTML += optionalHtml;
   }
