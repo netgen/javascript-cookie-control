@@ -2,13 +2,13 @@
   "name": "@netgen/javascript-cookie-control",
   "version": "0.0.1",
   "description": "Cookie control plugin",
-  "main": "dist/js/bundle",
+  "author": "Netgen <info@netgen.hr>",
+  "homepage": "https://github.com/netgen/javascript-cookie-control",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/netgen/javascript-cookie-control.git"
   },
-  "author": "Netgen <info@netgen.hr>",
-  "license": "MIT",
   "scripts": {
     "js": "webpack"
   },
@@ -39,5 +39,9 @@
     "Safari >= 9",
     "Android >= 4.4",
     "Opera >= 30"
-  ]
+  ],
+  "main": "dist/js/bundle",
+  "bugs": {
+    "url": "https://github.com/netgen/javascript-cookie-control/issues"
+  }
 }
