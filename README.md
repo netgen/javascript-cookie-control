@@ -111,12 +111,14 @@ cookieControl.init();
 ### Parameters for cookie control config:
 
 Config object has two parameters.
+
 | Parameter         | Type    | Default value                 | Description                                      |
 | ----------------- | ------- | ----------------------------- | ------------------------------------------------ |
 | `options`         | Object  |                               | General options for the plugin                   |
 | `optionalCookies` | Array   |                               | Array of objects for optional cookie groups      |
 
 Parameters for the `options` object:
+
 | Parameter                  | Type     | Default value | Description                                                                   |
 | -------------------------- | -------  | ------------- | ----------------------------------------------------------------------------- |
 | `open`                     | boolean  | true          | Open the window on page load (doesn't open once the user accepts the cookies) |
@@ -127,6 +129,7 @@ Parameters for the `options` object:
 | `optionCookieHtml(cookie)` | function |               | Function returning template for single optional cookie group. Function takes one object as parameter which has values for `name` (string), `label` (string), `description` (string) and `accepted` (boolean) and should return string with html. |
 
 Parameters for each `options` object:
+
 | Parameter               | Type      | Default value     | Description                                                                |
 | ---------------------   | --------- | ----------------- | -------------------------------------------------------------------------- |
 | `name`                  | string    |                   | Name of the cookie group (used for storing the value)                      |
