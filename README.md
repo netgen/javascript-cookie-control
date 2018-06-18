@@ -20,9 +20,9 @@ To load the required ES2015 module:
 import CookieControl from '@netgen/javascript-cookie-control';
 ```
 
-# Usage
+## Usage
 
-## HTML
+### HTML
 HTML markup for cookie control window shoud be:
 ```html
 <div id="ng-cc">
@@ -65,7 +65,7 @@ HTML markup for cookie control window shoud be:
 </div>
 ```
 
-## JS
+### JS
 
 Create config object for cookie control plugin and initialize it:
 ```js
@@ -149,14 +149,14 @@ Parameters for each `options` object:
 | `onAccept` (optional) | function | | Function that gets executed on plugin init if the cookie group is enabled |
 | `onRevoke` (optional) | function | | Function that gets executed on plugin init if the cookie group is disabled |
 
-### Behaviour
+#### Behaviour
 There is an event listener for the click on html elements containing css class `js-open-ng-cc` which opens the window. You can put it anywhere on your site if you need to.
 
 On every cookie group checkbox change, plugin saves the cookie with that cookie name and accept or revoke value.
 
 Window opens on every page load until user clicks the `#ng-cc-accept` button (if the `open` parameter isn't set to `false`). After that, the window doesn't open automatically for the duration of the cookie lifetime.
 
-## SCSS
+### SCSS
 Import styles to scss file:
 ```scss
 @import "@netgen/javascript-cookie-control/scss/style";
