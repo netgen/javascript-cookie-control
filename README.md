@@ -126,7 +126,7 @@ Config object has two parameters.
 | `options` | Object | | General options for the plugin |
 | `optionalCookies` | Array | | Array of objects for optional cookie groups |
 
-Parameters for the `options` object:
+Parameters for the `options` object (all are optional):
 
 | Parameter | Type | Default value | Description |
 | :--- | :---  | :--- | :--- |
@@ -136,6 +136,9 @@ Parameters for the `options` object:
 | `revokeValue` | string | '0' | Value saved for the revoked cookie group |
 | `timeout` | number | 200 | Timeout for auto open on page load (in milliseconds) |
 | `optionCookieHtml(cookie)` | function | | Function returning template for single optional cookie group. Function takes one object as parameter which has values for `name` (string), `label` (string), `description` (string) and `accepted` (boolean) and should return string with html |
+| `onChange(event, instance)` | function | | Function that gets executed on cookie group checkbox change. Function has two arguments. First one is checkbox change event from which you can get cookie group name (`e.target.dataset.name`) and if it's accepted or not (`e.target.checked`), and the other is instance of the plugin |
+| `onAccept(instance)` | function | | Function that gets executed on cookie accept button. Function has one argument, instance of the plugin |
+
 
 Parameters for each `options` object:
 
@@ -148,6 +151,14 @@ Parameters for each `options` object:
 | `accepted` (optional) | boolean | false | Set to true if you want that cookie group to be enabled by default |
 | `onAccept` (optional) | function | | Function that gets executed on plugin init if the cookie group is enabled |
 | `onRevoke` (optional) | function | | Function that gets executed on plugin init if the cookie group is disabled |
+
+You can modify options of the plugin after creating the instance with `set('option', new_value)` function.
+e.g.:
+```js
+cookieControl.set('onChange', (e, instance) => {
+  console.log(e, instance);
+});
+```
 
 #### Behaviour
 There is an event listener for the click on html elements containing css class `js-open-ng-cc` which opens the window. You can put it anywhere on your site if you need to.

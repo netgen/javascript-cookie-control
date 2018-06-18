@@ -37,6 +37,7 @@ export default class CookieControl {
 
       /* call onAccept or onRevoke functions */
       cookie.accepted ? cookie.onAccept && cookie.onAccept() : cookie.onRevoke && cookie.onRevoke();
+
     });
   }
 
@@ -106,11 +107,21 @@ export default class CookieControl {
       e.target.checked ? this.options.acceptValue : this.options.revokeValue,
       this.options.lifetime
     );
+
+    /* call onChange function if defined */
+    this.options.onChange && this.options.onChange(e, this);
   }
 
   accept(e) {
     e && e.preventDefault();
     setCookie('ng-cc-accepted', 'accepted', this.options.lifetime);
     this.close();
+
+    /* call onAccept function if defined */
+    this.options.onAccept && this.options.onAccept(this);
+  }
+
+  set(option, value) {
+    this.options[option] = value;
   }
 }
