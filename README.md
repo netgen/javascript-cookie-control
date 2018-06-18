@@ -112,30 +112,30 @@ cookieControl.init();
 
 Config object has two parameters.
 
-| Parameter         | Type    | Default value                 | Description                                      |
-| ----------------- | ------- | ----------------------------- | ------------------------------------------------ |
-| `options`         | Object  |                               | General options for the plugin                   |
-| `optionalCookies` | Array   |                               | Array of objects for optional cookie groups      |
+| Parameter | Type | Default value | Description |
+| :--- | :--- | :--- | :--- |
+| `options` | Object | | General options for the plugin |
+| `optionalCookies` | Array | | Array of objects for optional cookie groups |
 
 Parameters for the `options` object:
 
-| Parameter                  | Type     | Default value | Description                                                                   |
-| -------------------------- | -------  | ------------- | ----------------------------------------------------------------------------- |
-| `open`                     | boolean  | true          | Open the window on page load (doesn't open once the user accepts the cookies) |
-| `lifetime`                 | number   | 365           | Lifetime of the saved cookie settings (in days)                               |
-| `acceptValue`              | string   | '1'           | Value saved for the accepted cookie group                                     |
-| `revokeValue`              | string   | '0'           | Value saved for the revoked cookie group                                      |
-| `timeout`                  | number   | 200           | Timeout for auto open on page load (in milliseconds)                          |
-| `optionCookieHtml(cookie)` | function |               | Function returning template for single optional cookie group. Function takes one object as parameter which has values for `name` (string), `label` (string), `description` (string) and `accepted` (boolean) and should return string with html. |
+| Parameter | Type | Default value | Description |
+| :--- | :---  | :--- | :--- |
+| `open` | boolean | true | Open the window on page load (doesn't open once the user accepts the cookies) |
+| `lifetime` | number | 365 | Lifetime of the saved cookie settings (in days) |
+| `acceptValue` | string | '1' | Value saved for the accepted cookie group |
+| `revokeValue` | string | '0' | Value saved for the revoked cookie group |
+| `timeout` | number | 200 | Timeout for auto open on page load (in milliseconds) |
+| `optionCookieHtml(cookie)` | function | | Function returning template for single optional cookie group. Function takes one object as parameter which has values for `name` (string), `label` (string), `description` (string) and `accepted` (boolean) and should return string with html |
 
 Parameters for each `options` object:
 
-| Parameter               | Type      | Default value     | Description                                                                |
-| ---------------------   | --------- | ----------------- | -------------------------------------------------------------------------- |
-| `name`                  | string    |                   | Name of the cookie group (used for storing the value)                      |
-| `label`                 | string    |                   | Label for cookie group which is rendered in window next to the checkbox    |
-| `description`           | string    |                   | Description for the cookie group rendered below checkbox and label         |
-| `cookieName` (optional) | string    | `ng-cc-` + `name` | Name for storing cookie group consent                                      |
-| `accepted` (optional)   | boolean   | false             | Set to true if you want that cookie group to be enabled by default.        |
-| `onAccept` (optional)   | function  |                   | Function that gets executed on plugin init if the cookie group is enabled  |
-| `onRevoke` (optional)   | function  |                   | Function that gets executed on plugin init if the cookie group is disabled |
+| Parameter | Type | Default value | Description |
+| :--- | :--- | :--- | :--- |
+| `name` | string | | Name of the cookie group (used for storing the value) |
+| `label` | string | | Label for cookie group which is rendered in window next to the checkbox |
+| `description` | string | | Description for the cookie group rendered below checkbox and label |
+| `cookieName` (optional) | string | `ng-cc-` + `name` | Name for storing cookie group consent |
+| `accepted` (optional) | boolean | false | Set to true if you want that cookie group to be enabled by default |
+| `onAccept` (optional) | function | | Function that gets executed on plugin init if the cookie group is enabled |
+| `onRevoke` (optional) | function | | Function that gets executed on plugin init if the cookie group is disabled |
