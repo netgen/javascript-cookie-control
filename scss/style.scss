@@ -1,0 +1,107 @@
+$ngCcId: 'ng-cc' !default;
+$ngCcWidth: 28em !default;
+$ngCcBg: hsl(0, 0, 15) !default;
+
+##{$ngCcId} {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    font-size: 1rem;
+    .ng-cc-toggle {
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        bottom: 0;
+        background: hsl(200, 95, 35);
+        color: #fff;
+        font-size: 1.5em;
+        display: block;
+        padding: 0 1em;
+        line-height: 2;
+        cursor: pointer;
+    }
+    .ng-cc-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        overflow-y: auto;
+        background: $ngCcBg;
+        color: #fff;
+        padding: 2em 2em 3em;
+        width: $ngCcWidth;
+        transform: translate3d(-100%, 0, 0);
+        transition: transform .4s;
+        p {
+            color: inherit;
+        }
+        .ng-cc-close-btn {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            width: 2em;
+            text-align: center;
+            line-height: 2;
+            color: #fff;
+            i {
+                font-size: 1.25em;
+            }
+        }
+    }
+    .ng-cc-overlay {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background: hsla(0, 0, 0, .35);
+        transform: translate3d(0, -100%, 0);
+        opacity: 0;
+        transition: opacity .4s;
+    }
+    .ng-cc-optional-list {
+        list-style-type: none;
+        margin: 2em 0 .5em;
+        padding: 0;
+        > li {
+            padding: 1.5em 0;
+            border-top: 1px solid hsla(0, 0, 100, .25);
+            p {
+                margin: 0;
+            }
+        }
+        .ng-cc-optional-checkbox {
+            position: absolute;
+            pointer-events: all;
+            + label {
+                display: block;
+                position: relative;
+                font-size: 1.25em;
+                font-weight: 700;
+                margin: 0 0 .25em;
+                padding: 0 0 0 1.25em;
+                cursor: pointer;
+            }
+        }
+    }
+    .ng-cc-actions {
+        margin: 2em 0 0;
+        text-align: right;
+    }
+    &[open] {
+        .ng-cc-modal {
+            transform: translate3d(0, 0, 0);
+        }
+        .ng-cc-overlay {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    @media screen and (max-width: 600px) {
+        .ng-cc-modal {
+            width: 100vw;
+        }
+    }
+}

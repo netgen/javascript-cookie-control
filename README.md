@@ -22,7 +22,7 @@ import CookieControl from '@netgen/javascript-cookie-control';
 
 ## Usage
 
-#### HTML
+### HTML
 HTML markup for cookie control window shoud be:
 ```html
 <div id="ng-cc">
@@ -65,7 +65,7 @@ HTML markup for cookie control window shoud be:
 </div>
 ```
 
-#### JS
+### JS
 
 Create config object for cookie control plugin and initialize it:
 ```js
@@ -111,7 +111,13 @@ const cookieControl = new CookieControl(ccConfig);
 cookieControl.init();
 ```
 
-### Parameters for cookie control config:
+Second parameter for initializing new instance is optional string with the id of the plugin div. Default value is `ng-cc`.
+So if you need to change it, use it like this:
+```js
+const cookieControl = new CookieControl(ccConfig, 'new-id');
+```
+
+#### Parameters for cookie control config:
 
 Config object has two parameters.
 
@@ -143,9 +149,32 @@ Parameters for each `options` object:
 | `onAccept` (optional) | function | | Function that gets executed on plugin init if the cookie group is enabled |
 | `onRevoke` (optional) | function | | Function that gets executed on plugin init if the cookie group is disabled |
 
-### Behaviour
+#### Behaviour
 There is an event listener for the click on html elements containing css class `js-open-ng-cc` which opens the window. You can put it anywhere on your site if you need to.
 
 On every cookie group checkbox change, plugin saves the cookie with that cookie name and accept or revoke value.
 
 Window opens on every page load until user clicks the `#ng-cc-accept` button (if the `open` parameter isn't set to `false`). After that, the window doesn't open automatically for the duration of the cookie lifetime.
+
+### SCSS
+Import styles to scss file:
+```scss
+@import "@netgen/javascript-cookie-control/scss/style";
+```
+
+You also need to configure sass-loader to understand imports from node_modules. Update your sass-loader config by changing `{ loader: 'sass-loader' }` to:
+```js
+{
+  loader: 'sass-loader',
+  options: {
+    includePaths: ['node_modules']
+  }
+}
+```
+
+You can override scss variables for main div id, plugin window width and background:
+```scss
+$ngCcId: 'ng-cc';
+$ngCcWidth: 28em;
+$ngCcBg: hsl(0, 0, 15);
+```
