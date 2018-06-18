@@ -30,10 +30,13 @@ HTML markup for cookie control window shoud be:
     <!-- if you don't want to use the overlay, remove next div from the markup -->
     <div class="ng-cc-overlay"></div>
 
+    <!-- button for open/close the window. Leave out if you don't need it -->
+    <a class="ng-cc-toggle">Toggle cookie control</a>
+
     <div class="ng-cc-modal">
         
         <!-- button for closing the window. Leave out if you don't need it -->
-        <a href="#" class="ng-cc-close ng-cc-close-btn"><i class="fa fa-times"></i></a>
+        <a href="#" class="ng-cc-close ng-cc-close-btn">close</a>
 
         <div class="ng-cc-content">
             <h3>This site uses cookies.</h3>
@@ -139,3 +142,10 @@ Parameters for each `options` object:
 | `accepted` (optional) | boolean | false | Set to true if you want that cookie group to be enabled by default |
 | `onAccept` (optional) | function | | Function that gets executed on plugin init if the cookie group is enabled |
 | `onRevoke` (optional) | function | | Function that gets executed on plugin init if the cookie group is disabled |
+
+### Behaviour
+There is an event listener for the click on html elements containing css class `js-open-ng-cc` which opens the window. You can put it anywhere on your site if you need to.
+
+On every cookie group checkbox change, plugin saves the cookie with that cookie name and accept or revoke value.
+
+Window opens on every page load until user clicks the `#ng-cc-accept` button (if the `open` parameter isn't set to `false`). After that, the window doesn't open automatically for the duration of the cookie lifetime.
