@@ -14,9 +14,9 @@ export default class CookieControl {
           <label for="ng-cc-${cookie.name}">
             <i class="ng-cc-checkbox-icon">
               <span></span>
-            </i>${cookie.label}
+            </i>${cookie.label ? cookie.label : ''}
           </label>
-          <p>${cookie.description}</p>
+          ${cookie.description ? `<p>${cookie.description}</p>` : ''}
         </li>`,
     }, config.options);
     this.opened = false;
