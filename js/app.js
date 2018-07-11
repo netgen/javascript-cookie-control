@@ -25,19 +25,24 @@ export default class CookieControl {
     this.optionalCookiesByName = [];
 
     config.optionalCookies.forEach((ck) => {
+      const cookieName = ck.cookieName || `ng-cc-${ck.name}`;
       /* get saved value from cookies */
-      const savedCookie = getCookie(ck.cookieName || `ng-cc-${ck.name}`);
+      const savedCookie = getCookie(cookieName);
       const cookie = {
         ...ck,
+        cookieName,
         /* set accepted value according to saved or default value */
         accepted: savedCookie === this.options.revokeValue ? false : savedCookie === this.options.acceptValue || ck.accepted,
       };
+
+      /* initial save to cookies if default accepted and not saved */
+      !savedCookie && cookie.accepted && setCookie(cookie.cookieName, this.options.acceptValue, this.options.lifetime);
+
       this.optionalCookies[cookie.name] = cookie;
       this.optionalCookiesByName.push(cookie.name);
 
       /* call onAccept or onRevoke functions */
       cookie.accepted ? cookie.onAccept && cookie.onAccept() : cookie.onRevoke && cookie.onRevoke();
-
     });
   }
 
@@ -102,19 +107,24 @@ export default class CookieControl {
   toggleCookie(e) {
     /* turn on/off cookie group and save to cookie */
     this.optionalCookies[e.target.dataset.name].accepted = e.target.checked;
-    setCookie(
-      this.optionalCookies[e.target.dataset.name].cookieName || `ng-cc-${e.target.dataset.name}`,
-      e.target.checked ? this.options.acceptValue : this.options.revokeValue,
-      this.options.lifetime
-    );
+    this.saveCookie(this.optionalCookies[e.target.dataset.name]);
 
     /* call onChange function if defined */
     this.options.onChange && this.options.onChange(e, this);
   }
 
+  saveAll() {
+    this.optionalCookiesByName.forEach(name => this.saveCookie(this.optionalCookies[name]));
+  }
+
+  saveCookie(cookie) {
+    setCookie(cookie.cookieName, cookie.accepted ? this.options.acceptValue : this.options.revokeValue, this.options.lifetime);
+  }
+
   accept(e) {
     e && e.preventDefault();
     setCookie('ng-cc-accepted', 'accepted', this.options.lifetime);
+    this.saveAll();
     this.close();
 
     /* call onAccept function if defined */
