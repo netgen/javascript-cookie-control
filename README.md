@@ -132,6 +132,7 @@ Parameters for the `options` object (all are optional):
 | :--- | :---  | :--- | :--- |
 | `open` | boolean | true | Open the window on page load (doesn't open once the user accepts the cookies) |
 | `lifetime` | number | 365 | Lifetime of the saved cookie settings (in days) |
+| `domain` | string | | Domain for the saved cookie (e.g., 'example.com' or 'subdomain.example.com'). If not specified, this defaults to the host portion of the current document location. |
 | `acceptValue` | string | '1' | Value saved for the accepted cookie group |
 | `revokeValue` | string | '0' | Value saved for the revoked cookie group |
 | `timeout` | number | 200 | Timeout for auto open on page load (in milliseconds) |
