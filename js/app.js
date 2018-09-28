@@ -9,6 +9,7 @@ export default class CookieControl {
       acceptValue: '1',
       revokeValue: '0',
       timeout: 200,
+      domain: null,
       optionCookieHtml: cookie => `<li>
           <input type="checkbox" class="ng-cc-optional-checkbox" id="ng-cc-${cookie.name}" data-name="${cookie.name}" ${cookie.accepted ? 'checked' : ''} />
           <label for="ng-cc-${cookie.name}">
@@ -36,7 +37,7 @@ export default class CookieControl {
       };
 
       /* initial save to cookies if default accepted and not saved */
-      !savedCookie && cookie.accepted && setCookie(cookie.cookieName, this.options.acceptValue, this.options.lifetime);
+      !savedCookie && cookie.accepted && setCookie(cookie.cookieName, this.options.acceptValue, this.options.lifetime, this.options.domain);
 
       this.optionalCookies[cookie.name] = cookie;
       this.optionalCookiesByName.push(cookie.name);
@@ -118,12 +119,12 @@ export default class CookieControl {
   }
 
   saveCookie(cookie) {
-    setCookie(cookie.cookieName, cookie.accepted ? this.options.acceptValue : this.options.revokeValue, this.options.lifetime);
+    setCookie(cookie.cookieName, cookie.accepted ? this.options.acceptValue : this.options.revokeValue, this.options.lifetime, this.options.domain);
   }
 
   accept(e) {
     e && e.preventDefault();
-    setCookie('ng-cc-accepted', 'accepted', this.options.lifetime);
+    setCookie('ng-cc-accepted', 'accepted', this.options.lifetime, this.options.domain);
     this.saveAll();
     this.close();
 
