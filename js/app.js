@@ -57,7 +57,7 @@ export default class CookieControl {
 
   setupEvents() {
     /* toggle show/hide cookie window */
-    document.querySelectorAll('.ng-cc-toggle').forEach((el) => {
+    [...document.getElementsByClassName('ng-cc-toggle')].forEach((el) => {
       el.addEventListener('click', (e) => {
         e.preventDefault();
         return this.opened ? this.close() : this.open();
@@ -65,20 +65,20 @@ export default class CookieControl {
     });
 
     /* close cookie window */
-    document.querySelectorAll('.ng-cc-close').forEach((el) => {
+    [...document.getElementsByClassName('ng-cc-close')].forEach((el) => {
       el.addEventListener('click', this.close.bind(this));
     });
 
     /* open cookie window */
-    document.querySelectorAll('.js-open-ng-cc').forEach((el) => {
+    [...document.getElementsByClassName('js-open-ng-cc')].forEach((el) => {
       el.addEventListener('click', this.open.bind(this));
     });
 
     /* accept cookies */
-    this.el.querySelector('#ng-cc-accept').addEventListener('click', this.accept.bind(this));
+    document.getElementById('ng-cc-accept').addEventListener('click', this.accept.bind(this));
 
     /* turn on/off cookie group */
-    this.el.querySelectorAll('.ng-cc-optional-checkbox').forEach((checkbox) => {
+    [...this.el.getElementsByClassName('ng-cc-optional-checkbox')].forEach((checkbox) => {
       checkbox.addEventListener('change', this.toggleCookie.bind(this));
     });
   }
