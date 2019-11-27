@@ -34,7 +34,7 @@ HTML markup for cookie control window shoud be:
     <a class="ng-cc-toggle">Toggle cookie control</a>
 
     <div class="ng-cc-modal">
-        
+
         <!-- button for closing the window. Leave out if you don't need it -->
         <a href="#" class="ng-cc-close ng-cc-close-btn">close</a>
 
@@ -141,7 +141,7 @@ Parameters for the `options` object (all are optional):
 | `onAccept(instance)` | function | | Function that gets executed on cookie accept button. Function has one argument, instance of the plugin |
 
 
-Parameters for each `options` object:
+Parameters for each `optionalCookies` object:
 
 | Parameter | Type | Default value | Description |
 | :--- | :--- | :--- | :--- |
