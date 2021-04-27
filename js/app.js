@@ -14,7 +14,8 @@ export default class CookieControl {
           <input type="checkbox" class="ng-cc-optional-checkbox" id="ng-cc-${cookie.name}" data-name="${cookie.name}" ${cookie.accepted ? 'checked' : ''} />
           <label for="ng-cc-${cookie.name}">
             <i class="ng-cc-checkbox-icon">
-              <span></span>
+              <span class="on">${document.getElementsByClassName('ng-cc-on')[0].textContent}</span>
+              <span class="off">${document.getElementsByClassName('ng-cc-off')[0].textContent}</span>
             </i>${cookie.label ? cookie.label : ''}
           </label>
           ${cookie.description ? `<p>${cookie.description}</p>` : ''}
@@ -74,8 +75,23 @@ export default class CookieControl {
       el.addEventListener('click', this.open.bind(this));
     });
 
+    /* accept all cookies */
+    document.getElementById('ng-cc-accept').addEventListener('click', () => {
+      [...document.getElementsByClassName('ng-cc-optional-checkbox')].forEach((checkbox) => {
+        checkbox.checked = true;
+
+        if (checkbox.dataset.name in this.optionalCookies) {
+          this.optionalCookies[checkbox.dataset.name].accepted = true;
+          this.saveCookie(this.optionalCookies[checkbox.dataset.name]);
+        }
+      }); 
+      this.accept();
+    });
+
     /* accept cookies */
-    document.getElementById('ng-cc-accept').addEventListener('click', this.accept.bind(this));
+    document.getElementById('ng-cc-optional-save').addEventListener('click', 
+      this.accept.bind(this)
+    );
 
     /* turn on/off cookie group */
     [...this.el.getElementsByClassName('ng-cc-optional-checkbox')].forEach((checkbox) => {
@@ -102,7 +118,7 @@ export default class CookieControl {
       const cookie = this.optionalCookies[cookieName];
       optionalHtml += this.options.optionCookieHtml(cookie);
     });
-    this.el.querySelector('.ng-cc-optional-list').innerHTML += optionalHtml;
+    this.el.querySelector('.ng-cc-optional-list ul').innerHTML += optionalHtml;
   }
 
   toggleCookie(e) {
