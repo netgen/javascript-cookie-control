@@ -30,8 +30,8 @@ HTML markup for cookie control window shoud be:
     <!-- if you don't want to use the overlay, remove next div from the markup -->
     <div class="ng-cc-overlay"></div>
 
-    <!-- button for open/close the window. Leave out if you don't need it -->
-    <a class="ng-cc-toggle">Toggle cookie control</a>
+    <!-- button for opening the window. Leave out if you don't need it -->
+    <a href="#" class="js-open-ng-cc">Cookie settings</a>
 
     <div class="ng-cc-modal">
 
@@ -39,27 +39,45 @@ HTML markup for cookie control window shoud be:
         <a href="#" class="ng-cc-close ng-cc-close-btn">close</a>
 
         <div class="ng-cc-content">
-            <h3>This site uses cookies.</h3>
-            <p>Some text describing your cookie usage...</p>
-            <ul class="ng-cc-optional-list">
-                <!-- markup for the single cookie group (should be the same as the ones generated with js) -->
-                <li>
-                    <input type="checkbox" class="ng-cc-optional-checkbox" id="ng-cc-necessary" data-name="necessary" checked disabled />
-                    <label for="ng-cc-necessary">
-                        <i class="ng-cc-checkbox-icon"><span></span></i>
-                        Necessary Cookies
-                    </label>
-                    <p>This website cannot function properly without these cookies.</p>
-                </li>
+            <div class="wrapper">
+                <h3>This site uses cookies.</h3>
+                <p>Some text describing your cookie usage...</p>
 
-                <!-- this is where optional cookie groups are rendered -->
+                <div class="ng-cc-actions">
+                    <a href="#" class="optional-list-toggle">
+                        <span>Customize settings!</span>
+                        <span class="cookie-angle-up"></span>
+                    </a>
 
-            </ul>
-
-            <div class="ng-cc-actions">
-                <!-- button for accepting selected cookies and closing the window -->
-                <button id="ng-cc-accept" class="btn btn-primary">I'm ok with this</button>
+                    <!-- button for accepting selected cookies and closing the window -->
+                    <button id="ng-cc-accept" class="btn btn-primary">I'm ok with this</button>
+                </div>
             </div>
+            <div class="ng-cc-optional-list">
+                <ul>
+                    <!-- markup for the single cookie group (should be the same as the ones generated with js) -->
+                    <li>
+                        <input type="checkbox" class="ng-cc-optional-checkbox" id="ng-cc-necessary" data-name="necessary" checked disabled />
+                        <label for="ng-cc-necessary">
+                            <i class="ng-cc-checkbox-icon">
+                              <span class="on ng-cc-on">Accepted</span>
+                              <span class="off ng-cc-off">Not accepted</span>
+                            </i>
+                            Necessary Cookies
+                        </label>
+                        <p>This website cannot function properly without these cookies.</p>
+                    </li>
+
+                    <!-- this is where optional cookie groups are rendered -->
+                </ul>
+                <div class="ng-cc-optional-actions clearfix">
+                  <button id="ng-cc-optional-save" class="btn btn-outline-primary">
+                    Save settings
+                  </button>
+                </div>
+            </div>
+
+            
         </div>
     </div>
 </div>
