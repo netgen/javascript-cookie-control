@@ -76,8 +76,6 @@ HTML markup for cookie control window shoud be:
                   </button>
                 </div>
             </div>
-
-            
         </div>
     </div>
 </div>
